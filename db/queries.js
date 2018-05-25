@@ -2,18 +2,18 @@ const knex = require('./knex');
 
 module.exports = {
     getAll() {
-        return knex('foodStore');
+        return knex('foodStores');
     },
     getOne(id) {
-        return knex('foodStore').where('id', id).first();
+        return knex('foodStores').where('id', id).first();
     },
-    create(foodStore) {
-        return knex('foodStore').insert(foodStore, '*');
+    create(foodStores) {
+        return knex('foodStores').insert(foodStores, '*');
     },
-    update(id, foodStore) {
-        return knex('foodStore').where('id', id).update(foodStore, '*');
+    update(id, foodStores) {
+        return knex('foodStores').where('id', id).update(foodStores, '*');
     },
     delete(id) {
-        return knex('foodStore').where('id', id).del();
+        return knex('foodStores').where('id', id).del();
     }
 };

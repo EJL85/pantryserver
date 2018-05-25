@@ -1,8 +1,8 @@
 const foodStores = require('../foodStores');
 
 exports.seed = function(knex, Promise) {
-    return knex('foodStore').del()
+    return knex('foodStores').del()
         .then(function () {
-            return knex('foodStore').insert(foodStores);
+            return knex('foodStores').insert(foodStores);
         });
 };

@@ -9,21 +9,21 @@ function isValidId(req, res, next) {
     next(new Error('Invalid ID'));
 }
 
-function validResolution(resolution) {
-    const hasResolution = typeof resolution.resolution == 'string' && resolution.resolution.trim() != '';
-    return hasResolution;
+function validfoodStore(foodStore) {
+    const hasfoodStore = typeof foodStore.name == 'string' && foodStore.name.trim() != '';
+    return hasfoodStore;
 }
 
 router.get('/', (req, res) => {
-    queries.getAll().then(resolutions => {
-        res.json(resolutions);
+    queries.getAll().then(foodStores => {
+        res.json(foodStores);
     })
 });
 
 router.get('/:id', isValidId, (req, res, next) => {
-    queries.getOne(req.params.id).then(resolution => {
-        if(resolution) {
-            res.json(resolution);
+    queries.getOne(req.params.id).then(foodStore => {
+        if(foodStore) {
+            res.json(foodStore);
         } else {
             next();
         }
@@ -31,22 +31,22 @@ router.get('/:id', isValidId, (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    if(validResolution(req.body)) {
-        queries.create(req.body).then(resolution => {
-            res.json(resolution[0]);
+    if(validfoodStore(req.body)) {
+        queries.create(req.body).then(foodStore => {
+            res.json(foodStore[0]);
         })
     } else {
-        next(new Error('Invalid resolution'));
+        next(new Error('Invalid foodStore'));
     }
 });
 
 router.put('/:id', isValidId, (req, res, next) => {
-    if(validResolution(req.body)) {
-        queries.update(req.params.id, req.body).then(resolutions => {
-            res.json(resolutions[0]);
+    if(validfoodStore(req.body)) {
+        queries.update(req.params.id, req.body).then(foodStores => {
+            res.json(foodStores[0]);
         })
     } else {
-        next(new Error('Invalid resolution'));
+        next(new Error('Invalid foodStore'));
     }
 });
 
